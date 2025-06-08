@@ -1,0 +1,160 @@
+body {
+  font-family: system-ui, sans-serif;
+  background-size: 600% 600%;
+  animation: animatedGradient 25s ease infinite;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+@keyframes animatedGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body.default { background: linear-gradient(-45deg, #ff6ec4, #7873f5, #66ffff, #ffdd57); }
+body.sunset { background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffecd2, #fcb69f); }
+body.ocean  { background: linear-gradient(-45deg, #2BC0E4, #EAECC6, #86A8E7, #91EAE4); }
+body.forest { background: linear-gradient(-45deg, #5A3F37, #2C7744, #3CA55C, #B5AC49); }
+
+body.dark {
+  filter: brightness(0.8);
+  color: #eee;
+}
+
+#chat-container {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  max-width: 600px;
+  height: 90vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+body.dark #chat-container {
+  background: rgba(20, 20, 20, 0.85);
+}
+
+#chat-log {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.msg {
+  display: flex;
+}
+.msg.user {
+  justify-content: flex-end;
+}
+.msg.assistant {
+  justify-content: flex-start;
+}
+
+.bubble {
+  padding: 0.75em 1em;
+  border-radius: 16px;
+  max-width: 70%;
+  line-height: 1.4;
+  white-space: pre-wrap;
+}
+
+.user .bubble {
+  background: #007bff;
+  color: white;
+  border-bottom-right-radius: 0;
+}
+
+.assistant .bubble {
+  background: #f1f1f1;
+  color: black;
+  border-bottom-left-radius: 0;
+}
+
+body.dark .assistant .bubble {
+  background: #333;
+  color: #eee;
+}
+
+#chat-form {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#user-input {
+  flex: 1;
+  padding: 1em;
+  font-size: 1em;
+  border: none;
+  outline: none;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 1em;
+  cursor: pointer;
+}
+
+#controls {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  z-index: 3;
+  display: flex;
+  gap: 0.5em;
+}
+
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+/* Particle canvas */
+#particles-js {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Gradient theme picker */
+#theme-selector {
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+}
+
+body.theme-pink {
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+}
+body.theme-blue {
+  background: linear-gradient(-45deg, #89f7fe, #66a6ff, #4facfe, #00f2fe);
+}
+body.theme-green {
+  background: linear-gradient(-45deg, #d4fc79, #96e6a1, #84fab0, #8fd3f4);
+}

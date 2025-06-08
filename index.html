@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Chatbot</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="default">
+  <div id="controls">
+<select id="theme-selector" onchange="changeTheme()">
+  <option value="">🌈 Pick Theme</option>
+  <option value="pink">Pink Dream</option>
+  <option value="blue">Ocean Blues</option>
+  <option value="green">Minty Fresh</option>
+</select>
+
+    <button id="toggle-dark">🌒 Toggle Dark</button>
+  </div>
+
+  <canvas id="particles"></canvas>
+
+  <div id="chat-container">
+    <div id="chat-log"></div>
+    <form id="chat-form">
+      <input type="text" id="user-input" placeholder="Ask me something..." autocomplete="off" required />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+  <!-- Particle.js Background -->
+<div id="particles-js"></div>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  function changeTheme() {
+  const selected = document.getElementById("theme-selector").value;
+  document.body.className = document.body.className.replace(/theme-\w+/g, '');
+  if (selected) {
+    document.body.classList.add(`theme-${selected}`);
+    localStorage.setItem("theme-style", selected);
+  } else {
+    localStorage.removeItem("theme-style");
+  }
+}
+
+// Apply saved theme
+const savedTheme = localStorage.getItem("theme-style");
+if (savedTheme) {
+  document.body.classList.add(`theme-${savedTheme}`);
+  document.getElementById("theme-selector").value = savedTheme;
+}
+
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 60 },
+      size: { value: 3 },
+      move: { speed: 1 },
+      line_linked: { enable: true, opacity: 0.2 },
+      color: { value: "#ffffff" }
+    },
+    interactivity: {
+      events: { onhover: { enable: true, mode: "repulse" } },
+      modes: { repulse: { distance: 100, duration: 0.4 } }
+    }
+  });
+</script>
+
+</body>
+</html>
